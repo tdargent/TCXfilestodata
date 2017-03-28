@@ -2,6 +2,7 @@
 
 import os,tcxparser
 
+cd = os.path.dirname(os.path.abspath(__file__)) #use to browse tcx files at the correct location
 file_list=os.listdir(os.getcwd())
 
 f=open("result.txt","a")
@@ -14,7 +15,5 @@ for a in file_list:
     else:    
         tcx=tcxparser.TCXParser(cd+'/'+a) #see https://github.com/vkurup/python-tcxparser/ for details
         if tcx.activity_type == 'biking'  :  #To select only my biking session (could be change to 'hiking', 'running' etc.)
-            f=open("result.txt","a")
             f.write(str(tcx.completed_at)+'\t'+str(tcx.distance)+'\t'+str(tcx.duration)+'\n')
-
 f.close
